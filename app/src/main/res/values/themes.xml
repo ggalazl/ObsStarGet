@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default dark theme (framework Material, no AndroidX). -->
+    <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">@color/bg</item>
+        <item name="android:colorPrimaryDark">@color/bg</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:colorControlNormal">@color/text_muted</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHint">@color/text_muted</item>
+        <item name="android:statusBarColor">@color/bg</item>
+        <item name="android:navigationBarColor">@color/bg</item>
+    </style>
+
+    <!-- Dialogs (date picker, alerts, menus) in the matching palettes. -->
+    <style name="DialogTheme" parent="android:Theme.Material.Dialog.Alert">
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+
+    <style name="DialogTheme.Red">
+        <item name="android:colorAccent">@color/red_accent</item>
+        <item name="android:colorBackground">@color/red_bg</item>
+        <item name="android:textColorPrimary">@color/red_text_primary</item>
+        <item name="android:textColorSecondary">@color/red_text_secondary</item>
+        <item name="android:textColorPrimaryInverse">@color/red_bg</item>
+        <item name="android:colorControlNormal">@color/red_text_muted</item>
+        <item name="android:colorControlActivated">@color/red_accent</item>
+    </style>
+
+    <!-- Night-vision theme: everything in dim red to preserve dark adaptation at the telescope. -->
+    <style name="AppTheme.Red" parent="AppTheme">
+        <item name="android:colorPrimary">@color/red_bg</item>
+        <item name="android:colorPrimaryDark">@color/red_bg</item>
+        <item name="android:colorAccent">@color/red_accent</item>
+        <item name="android:colorControlNormal">@color/red_text_muted</item>
+        <item name="android:colorBackground">@color/red_bg</item>
+        <item name="android:windowBackground">@color/red_bg</item>
+        <item name="android:textColorPrimary">@color/red_text_primary</item>
+        <item name="android:textColorSecondary">@color/red_text_secondary</item>
+        <item name="android:textColorHint">@color/red_text_muted</item>
+        <item name="android:statusBarColor">@color/red_bg</item>
+        <item name="android:navigationBarColor">@color/red_bg</item>
+    </style>
+
+    <!-- Full-screen chart viewer (a dialog over the activity). -->
+    <style name="FullScreenTheme" parent="android:Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+
+    <style name="FullScreenTheme.Red">
+        <item name="android:colorAccent">@color/red_accent</item>
+        <item name="android:colorBackground">@color/red_bg</item>
+        <item name="android:windowBackground">@color/red_bg</item>
+        <item name="android:textColorPrimary">@color/red_text_primary</item>
+        <item name="android:textColorSecondary">@color/red_text_secondary</item>
+    </style>
+</resources>

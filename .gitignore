@@ -1,0 +1,21 @@
+# Build outputs and local settings
+.gradle/
+build/
+app/build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+.kotlin/
+*.log
+
+# Release signing and release files: these must never go to GitHub.
+# (The key lives in ~/ObsStarGet-signing; release APKs are attached to GitHub releases instead.)
+*.jks
+*.keystore
+*.p12
+signing.properties
+release-apk/
+*.apk
+*.aab

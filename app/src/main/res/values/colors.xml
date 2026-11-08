@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#1A1A19</color>
+    <color name="accent">#3987E5</color>
+    <color name="text_primary">#F0EFEC</color>
+    <color name="text_secondary">#C3C2B7</color>
+    <color name="text_muted">#8F8E86</color>
+
+    <color name="red_bg">#120000</color>
+    <color name="red_accent">#E03028</color>
+    <color name="red_text_primary">#FF5A50</color>
+    <color name="red_text_secondary">#D04038</color>
+    <color name="red_text_muted">#8C2A25</color>
+
+    <color name="ic_launcher_background">#101826</color>
+</resources>

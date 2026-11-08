@@ -1,0 +1,46 @@
+name: Report a problem
+description: Something in ObsStarGet is wrong, crashes, or does not do what you expected.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a problem. The more precise the details, the faster it can be fixed.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what did you see instead?
+    validations:
+      required: true
+  - type: input
+    id: target
+    attributes:
+      label: Target(s)
+      placeholder: e.g. NGC 7531, Cartwheel Galaxy, 23:14:48.5 -43:35:60
+  - type: input
+    id: site
+    attributes:
+      label: Site
+      placeholder: e.g. La Silla, or latitude/longitude
+  - type: input
+    id: date
+    attributes:
+      label: Night or date window
+      placeholder: e.g. night of 2026-12-03, 30 nights
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Shown in the app under Feedback, or ⋮ → About.
+      placeholder: e.g. 1.5
+  - type: input
+    id: phone
+    attributes:
+      label: Phone and Android version
+      placeholder: e.g. Samsung Galaxy S23, Android 15
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag images here if you have them (Save PNG in the app, or a phone screenshot).

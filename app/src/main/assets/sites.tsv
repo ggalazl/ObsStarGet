@@ -1,0 +1,106 @@
+alma	ALMA, Llano de Chajnantor	-23.029000	-67.755000	5000	America/Santiago	Atacama Large Millimeter Array|ALMA
+aao	Anglo-Australian Observatory	-31.277039	149.066086	1164	Australia/Sydney	Anglo-Australian Observatory|aao
+apo	Apache Point Observatory	32.780000	-105.820000	2798	America/Denver	Apache Point Observatory|Apache Point
+ao	Arecibo Observatory	18.344167	-66.752778	497	America/Puerto_Rico	AO|Arecibo Observatory|Arecibo|arecibo
+atca	Australia Telescope Compact Array	-30.313900	149.564600	237	Australia/Sydney	ATCA|Australia Telescope Compact Array
+askap	Australian Square Kilometre Array Pathfinder	-26.697000	116.631424	361	Australia/Perth	ASKAP|Australian Square Kilometre Array Pathfinder
+BAO	Beijing XingLong Observatory	40.393333	117.575000	950	Asia/Shanghai	Beijing XingLong Observatory
+bbso	Big Bear Solar Observatory	34.258300	-116.921400	2067	America/Los_Angeles	BBSO|NST
+bmo	Black Moshannon Observatory	40.921667	-78.005000	738	America/New_York	Black Moshannon Observatory
+cfht	Canada-France-Hawaii Telescope	19.826667	-155.471667	4215	Pacific/Honolulu	Canada-France-Hawaii Telescope
+chime	Canadian Hydrogen Intensity Mapping Experiment	49.320709	-119.623677	555	America/Vancouver	CHIME
+casleo	CASLEO, El Leoncito (approx.)	-31.798600	-69.295600	2552	America/Argentina/San_Juan	El Leoncito
+mtbigelow	Catalina Observatory: 61 inch telescope	32.416667	-110.731667	2510	America/Denver	Catalina Observatory
+CAHA	Centro Astronomico Hispano-Aleman, Almeria	37.223611	-2.546111	2168	Europe/Madrid	Observatorio de Calar Alto|CAHA
+ctio	Cerro Tololo Interamerican Observatory	-30.165278	-70.815000	2215	America/Santiago	Cerro Tololo Interamerican Observatory|Cerro Tololo
+ekar	Cima Ekar 182 cm Telescope	45.848589	11.581133	1413	Europe/Rome	Cima Ekar Observing Station|Mt. Ekar 182 cm Telescope
+dkist	Daniel K. Inouye Solar Telescope	20.706700	-156.256400	3067	Pacific/Honolulu	DKIST|ATST
+dot	Devasthal Optical Telescope	29.360982	79.684366	2424	Asia/Kolkata	DOT
+dao	Dominion Astrophysical Observatory	48.521667	-123.416667	229	America/Los_Angeles	Dominion Astrophysical Observatory
+drao	Dominion Radio Astrophysical Observatory	49.321023	-119.618980	547	America/Vancouver	Dominion Radio Astrophysical Observatory|DRAO|John Galt Telescope|DRAO 26m Telescope
+dwingeloo	Dwingeloo Radio Telescope	52.812137	6.396346	70	Europe/Amsterdam	dwl
+effelsberg	Effelsberg 100-m Radio Telescope	50.524836	6.883616	417	Europe/Berlin	Effelsberg
+fast	Five-hundred-meter Aperture Spherical radio Telescope	25.652946	106.856666	1109	Asia/Shanghai	FAST
+gemini_north	Gemini North	19.823801	-155.469047	4213	Pacific/Honolulu	gemn
+gemini_south	Gemini South	-30.240742	-70.736683	2750	America/Santiago	Cerro Pachon|Gemini South|gems
+gmrt	Giant Metrewave Radio Telescope	19.093003	74.056561	497	Asia/Kolkata	GMRT
+gbt	Green Bank Telescope	38.433056	-79.839722	807	America/New_York	Green Bank Telescope|GBT|Green Bank Observatory
+haleakala	Haleakala Observatories	20.715520	-156.169000	3048	Pacific/Honolulu	Haleakala Observatories
+hcro	Hat Creek Radio Observatory	40.817431	-121.470736	1019	America/Los_Angeles	ATA|Allen Telescope Array|Hat Creek
+het	Hobby Eberly Telescope	30.681389	-104.014722	2026	America/Chicago	HET|Hobby Eberly Telescope
+iao	Indian Astronomical Observatory	32.779444	78.964167	4500	Asia/Kolkata	IAO|HCT
+jcmt	James Clerk Maxwell Telescope	19.822800	-155.477000	4125	Pacific/Honolulu	James Clerk Maxwell Telescope|JCMT
+kpno	Kitt Peak National Observatory	31.963333	-111.600000	2120	America/Phoenix	Kitt Peak|Kitt Peak National Observatory
+lasilla	La Silla Observatory (ESO)	-29.256667	-70.730000	2347	America/Santiago	La Silla Observatory
+lbt	Large Binocular Telescope	32.701600	-109.871900	2902	America/Denver	Large Binocular Telescope|Mount Graham International Observatory|Mt Graham
+lco	Las Campanas Observatory	-29.003333	-70.701667	2282	America/Santiago	Las Campanas Observatory
+lick	Lick Observatory	37.343333	-121.636667	1290	America/Los_Angeles	Lick Observatory
+Lijiang	Lijiang Observatory	26.695100	100.030000	3200	Asia/Shanghai	Lijiang Observatory|GMG
+lwa1	Long Wavelength Array 1	34.068900	-107.627670	2127	America/Denver	LWA1
+lofar	Low-Frequency Array	52.915119	6.869833	49	Europe/Amsterdam	LOFAR
+dct	Lowell Discovery Telescope	34.744305	-111.422515	2337	America/Denver	DCT|Discovery Channel Telescope|Happy Jack|LDT|ldt|Lowell Discovery Telescope
+lowell	Lowell Observatory - Anderson Mesa	35.096667	-111.535000	2198	America/Denver	Lowell Observatory|Anderson Mesa|lo-am|NPOI|Navy Precision Optical Interferometer|Perkins|PTO|pto
+mars_hill	Lowell Observatory - Mars Hill	35.202875	-111.664781	2195	America/Denver	Mars Hill|lo-mh|mh
+mro	Manastash Ridge Observatory	46.952800	-120.727800	1198	America/Los_Angeles	Manastash Ridge Observatory
+maunakea	Mauna Kea Observatories (summit)	19.820700	-155.468100	4205	Pacific/Honolulu	Mauna Kea
+mcdonald	McDonald Observatory	30.671667	-104.021667	2075	America/Chicago	McDonald Observatory
+mdm	MDM Observatory	31.950000	-111.616667	1938	America/Denver	Michigan-Dartmouth-MIT Observatory
+medicina	Medicina Radio Telescope	44.520500	11.646900	25	Europe/Rome	Medicina Dish|Medicina
+meerkat	MeerKAT	-30.711056	21.443889	1087	Africa/Johannesburg	MeerKAT|MEERKAT
+mlo	Mount Laguna Observatory	32.842200	-116.426900	1859	America/Los_Angeles	MLO|Mount Laguna Observatory|Mount Laguna
+mwo	Mount Wilson Observatory	34.222580	-118.061684	1742	America/Los_Angeles	CHARA
+Otehiwai Observatory	Mt John	-43.985741	170.465062	1029	Pacific/Auckland	Mt John|MJO|MOA|Otehiwai
+mso	Mt. Stromlo Observatory	-35.320650	149.024333	767	Australia/Sydney	Mt. Stromlo Observatory
+mmt	Multiple Mirror Telescope	31.688333	-110.885000	2608	America/Denver	Multiple Mirror Telescope
+mwa	Murchison Widefield Array	-26.703319	116.670815	378	Australia/Perth	MWA|Murchison Widefield Array
+nancay	Nancay Radio Telescope	47.373602	2.197478	191	Europe/Paris	NANCAY|Nancay
+nanshan	NanShan Radio Telescope (NSRT, Xinjiang Astronomical Observatory)	43.471170	87.177830	2080	Asia/Shanghai	NANSHAN|NSRT
+irtf	NASA Infrared Telescope Facility	19.826218	-155.471999	4168	Pacific/Honolulu	IRTF
+NOV	National Observatory of Venezuela	8.790000	-70.866667	3610	America/Caracas	National Observatory of Venezuela
+noto	Noto Radio Telescope	36.875850	14.988900	30	Europe/Rome	Noto
+ohp	Observatoire de Haute Provence	43.930833	5.713333	650	Europe/Paris	OHP|Haute-Provence
+omm	Observatoire du Mont Mégantic	45.455711	-71.152500	1108	America/Toronto	OMM|Mont Mégantic Observatory|Observatoire du Mont Mégantic
+sirene	Observatoire SIRENE	44.000000	5.486944	1100	Europe/Paris	
+OAJ	Observatorio Astrofisico de Javalambre	40.042019	-1.016083	1956	Europe/Madrid	OAJ
+oalp	Observatorio Astronomico de La Plata	-34.908472	-57.932722	16	America/Argentina/Buenos_Aires	La Plata Astronomical Observatory|OALP
+spm	Observatorio Astronomico Nacional, San Pedro Martir	31.029167	-115.486944	2830	America/Tijuana	Observatorio Astronomico Nacional, San Pedro Martir
+tona	Observatorio Astronomico Nacional, Tonantzintla	19.032778	-98.313889	2150	America/Mexico_City	Observatorio Astronomico Nacional, Tonantzintla
+OARMA	Observatorio Astronomico Ramon Maria Aller, Santiago de Compostela	42.875940	-8.555450	240	Europe/Madrid	Observatorio Ramon Maria Aller|OARMA
+oca	Observatorio Cerro Armazones	-24.598670	-70.201280	2817	America/Santiago	OCA|Cerro Armazones Observatory
+cerrocalan	Observatorio Cerro Calan (approx.)	-33.396100	-70.536700	860	America/Santiago	Cerro Calan
+ckoirama	Observatorio Ckoirama	-24.089332	-69.930624	965	America/Santiago	Ckoirama|Ckoirama Observatory|Observatorio Ckoirama
+teide	Observatorio del Teide, Tenerife	28.300000	-16.509722	2390	Atlantic/Canary	Observatorio del Teide|OT
+santamartina	Observatorio UC Santa Martina (approx.)	-33.269200	-70.534400	1450	America/Santiago	Santa Martina
+OAO	Okayama Astrophysical Observatory	34.577075	133.593956	370	Asia/Tokyo	OAO
+ondrejov	Ondrejov Observatory (approx.)	49.910600	14.780800	528	Europe/Prague	Ondrejov
+ovro	Owens Valley Radio Observatory	37.233387	-118.283405	1189	America/Los_Angeles	mma
+paranal	Paranal Observatory (ESO)	-24.627439	-70.404987	2669	America/Santiago	Cerro Paranal|Paranal Observatory
+parkes	Parkes	-32.998406	148.263510	415	Australia/Sydney	Parkes|Murriyang
+picdumidi	Pic du Midi Observatory	42.936400	0.142500	2877	Europe/Paris	Pic du Midi|OMP
+lapalma	Roque de los Muchachos, La Palma	28.758333	-17.880000	2327	Atlantic/Canary	Roque de los Muchachos
+greenwich	Royal Observatory Greenwich	51.477811	-0.001475	46	Europe/London	
+rubin_aux	Rubin Auxiliary Telescope	-30.244797	-70.747722	2647	America/Santiago	LSST 1.4m|LSST AuxTel|Rubin:1.2m|Rubin Auxiliary Telescope|Rubin AuxTel|rubin_auxtel
+saao	SAAO Sutherland	-32.379400	20.810700	1798	Africa/Johannesburg	Sutherland
+spo	Sacramento Peak Observatory	32.787300	-105.820500	2800	America/Denver	SPO|Sacramento Peak|Sac Peak|Sunspot
+srt	Sardinia Radio Telescope	39.493072	9.245151	672	Europe/Rome	SRT
+sso	Siding Spring Observatory	-31.273361	149.061194	1149	Australia/Sydney	Siding Spring Observatory
+rubin	Simonyi Survey Telesope	-30.244633	-70.749417	2663	America/Santiago	LSST|LSST 8.4m|Rubin|Rubin Observatory|rubin_sst|rubin_simonyi|Simonyi Survey Telescope|Rubin:Simonyi
+ska-low	SKA-LOW	-26.824722	116.764448	365	Australia/Perth	SKA-LOW|SKA Low|ska low|skalow
+ska-mid	SKA-MID	-30.712925	21.443803	1096	Africa/Johannesburg	SKA-MID|SKA Mid|ska mid|skamid
+skinakas	Skinakas Observatory, Crete (approx.)	35.211900	24.899200	1750	Europe/Athens	Skinakas
+salt	Southern African Large Telescope	-32.375823	20.810808	1798	Africa/Johannesburg	SALT|Southern African Large Telescope|SAAO|Sutherland
+sao_ras	Special Astrophysical Observatory, BTA (approx.)	43.646800	41.440500	2070	Europe/Moscow	BTA|SAO RAS
+sma	Sub-millimeter Array	19.824220	-155.477550	4125	Pacific/Honolulu	SMA
+Subaru	Subaru Telescope	19.825556	-155.476111	4139	Pacific/Honolulu	Subaru Telescope
+TNO	Thai National Observatory	18.590556	98.486667	2457	Asia/Bangkok	TNO
+Palomar	The Hale Telescope	33.356000	-116.863000	1706	America/Los_Angeles	Hale Telescope
+tug	TUBITAK National Observatory	36.824166	30.335555	2500	Europe/Istanbul	TUG
+ukirt	United Kingdom Infrared Telescope	19.822431	-155.470328	4198	Pacific/Honolulu	UKIRT|United Kingdom Infrared Telescope
+vbo	Vainu Bappu Observatory	12.576660	78.826600	725	Asia/Kolkata	Vainu Bappu Observatory
+vla	Very Large Array (VLA)	34.078749	-107.618283	2124	America/Denver	Very Large Array|Jansky Very Large Array
+keck	W. M. Keck Observatory	19.828333	-155.478333	4160	Pacific/Honolulu	W. M. Keck Observatory|Keck Observatory
+Wendelstein	Wendelstein Observatory	47.703639	12.012056	1838	Europe/Berlin	Wendelstein Observatory|wendelstein
+flwo	Whipple Observatory	31.680944	-110.877500	2320	America/Denver	Whipple|Whipple Observatory
+winer	Winer Observatory	31.665578	-110.601783	1516	America/Phoenix	Winer|Winer Observatory
+wise	Wise Observatory	30.597390	34.762180	875	Asia/Jerusalem	wise|Wise Observatory
+wiyn	WIYN Observatory	31.958050	-111.600619	2091	America/Phoenix	WIYN|WIYN Observatory|WIYN 3.5 m

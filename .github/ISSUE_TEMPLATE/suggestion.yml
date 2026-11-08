@@ -1,0 +1,21 @@
+name: Suggest an improvement
+description: An idea for a new feature, a change, or a better way to show something.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your suggestion
+      description: What would you like ObsStarGet to do, or to do differently?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: How would you use it?
+      description: For example the kind of observations, instruments or sites you have in mind.
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Sketches or examples
+      description: "Optional: drag images here, or point to another tool that does something similar."

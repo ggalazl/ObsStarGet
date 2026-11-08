@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- An airmass track rising over the horizon, a crescent Moon and two stars. 108dp canvas, 66dp safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M26,74 L82,74"
+        android:strokeWidth="2"
+        android:strokeColor="#5C5B57" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M30,74 Q54,22 78,74"
+        android:strokeWidth="5"
+        android:strokeColor="#3987E5"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#E9B949"
+        android:pathData="M61,40 a9,9 0 1,0 18,0 a9,9 0 1,0 -18,0 Z" />
+    <path
+        android:fillColor="#101826"
+        android:pathData="M57,37 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0 Z" />
+    <path
+        android:fillColor="#F0EFEC"
+        android:pathData="M34.5,38 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0 Z" />
+    <path
+        android:fillColor="#F0EFEC"
+        android:pathData="M45.8,29 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0 Z" />
+</vector>
