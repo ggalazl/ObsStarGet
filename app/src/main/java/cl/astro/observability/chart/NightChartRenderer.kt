@@ -66,6 +66,27 @@ object ChartText {
     fun airmassLimit(x: Double): String =
         if (Math.round(x * 100) % 10 == 0L) String.format(Locale.US, "%.1f", x) else String.format(Locale.US, "%.2f", x)
 
+    /**
+     * Airmass shown at the night-diagram cursor, with two decimals; null below the horizon. Next to a target's point it
+     * is written as a plain number, read against the airmass axis (left, or right when the diagram shows altitude).
+     */
+    fun airmassValue(alt: Double, airmass: Double): String? =
+        if (alt > 0.0 && airmass.isFinite() && airmass <= 99.0) String.format(Locale.US, "%.2f", airmass) else null
+
+    /**
+     * Read-out of one target in the cursor box. The airmass is written next to the target's point on the curve, so it
+     * is added here only when that label could not be drawn ([withAirmass]: the point is off the diagram or too close
+     * to another one). [compact] splits the text over two lines for narrow screens.
+     */
+    fun cursorLines(name: String, alt: Double, airmass: Double, az: Double, moonSep: Double, withAirmass: Boolean,
+                    compact: Boolean): List<String> {
+        val am = if (withAirmass) airmassValue(alt, airmass)?.let { "  airmass $it" } ?: "" else ""
+        val first = String.format(Locale.US, "alt %.1f°", alt) + am
+        val rest = String.format(Locale.US, "az %.0f°  Moon %.0f°", az, moonSep)
+        val n = name.take(16)
+        return if (compact) listOf("$n  $first", "    $rest") else listOf("$n  $first  $rest")
+    }
+
     /** Largest airmass shown: the chosen axis maximum, but never less than the observability limit. */
     fun axisMaxAirmass(chosen: Double, limit: Double): Double = kotlin.math.max(chosen, limit)
 
@@ -395,11 +416,19 @@ class NightChartRenderer(var palette: ChartPalette, private val dp: Float, priva
         }
 
         // ---- cursor read-out
-        if (cursor != null && cursor in tStart..tEnd) drawCursor(sink, results, active, cursor, ::yOfAlt, fsSmall, displayZone)
+        if (cursor != null && cursor in tStart..tEnd) {
+            drawCursor(sink, results, active, cursor, ::yOfAlt, fsSmall, displayZone, mode, width)
+        }
     }
 
     private fun moonDash() = floatArrayOf(1.2f * dp, 3.2f * dp)
 
+    /**
+     * Cursor read-out: a vertical line, a point on every curve with the target's airmass written next to it, and a box
+     * with the time and each target's altitude, azimuth and Moon distance. A target whose point cannot be labelled
+     * (off the diagram, or too close to another point) gets its airmass in the box instead, so every airmass is shown
+     * exactly once.
+     */
     private fun drawCursor(
         sink: DrawSink,
         results: List<NightResult>,
@@ -408,6 +437,8 @@ class NightChartRenderer(var palette: ChartPalette, private val dp: Float, priva
         yOfAlt: (Double) -> Float,
         fsz: Float,
         displayZone: ZoneId,
+        mode: YAxisMode,
+        width: Float,
     ) {
         val p = palette
         val r = results[0]
@@ -415,36 +446,162 @@ class NightChartRenderer(var palette: ChartPalette, private val dp: Float, priva
         val ms = r.times[i]
         val x = xOf(ms)
         sink.line(x, plotT, x, plotB, Colors.alpha(p.textPrimary, 0.7f), 1f * dp)
+        val dots = ArrayList<Pair<Int, Float>>() // (target, y) of the points shown on the curves
         for ((k, rk) in results.withIndex()) {
             val yo = yOfAlt(rk.objAlt[i])
-            if (yo in plotT..plotB) sink.fillCircle(x, yo, if (k == active) 4f * dp else 3f * dp, p.seriesColor(k))
+            if (yo in plotT..plotB) {
+                sink.fillCircle(x, yo, if (k == active) 4f * dp else 3f * dp, p.seriesColor(k))
+                dots.add(k to yo)
+            }
         }
         val ym = yOfAlt(r.moonAlt[i])
-        if (ym in plotT..plotB) sink.fillCircle(x, ym, 3.5f * dp, p.moon)
+        val moonShown = ym in plotT..plotB
+        if (moonShown) sink.fillCircle(x, ym, 3.5f * dp, p.moon)
+
+        // ---- box text
         val utc = ZoneId.of("UTC")
-        val lines = ArrayList<Pair<String, Int>>()
         // The chosen time scale first, then UT (unless that is the chosen one) and LST.
         val chosen = "${ChartText.hm(ms, displayZone)} ${ChartText.shortZone(displayZone, r.site.zone)}"
         val head = if (ChartText.isUt(displayZone)) chosen else "$chosen · ${ChartText.hm(ms, utc)} UT"
-        lines.add("$head · LST ${ChartText.lstHm(r.lst[i])}" to p.textPrimary)
-        for ((k, rk) in results.withIndex()) {
-            val xm = rk.airmass[i]
-            val xs = if (xm.isInfinite() || xm > 99) "—" else String.format(Locale.US, "%.2f", xm)
-            lines.add(String.format(Locale.US, "%s  alt %.1f°  X %s  az %.0f°  Moon %.0f°", rk.target.name.take(16),
-                rk.objAlt[i], xs, rk.objAz[i], rk.moonSep[i]) to p.seriesColor(k))
+        val headLine = "$head · LST ${ChartText.lstHm(r.lst[i])}"
+        val foot = String.format(Locale.US, "Moon alt %.1f°  ·  Sun alt %.1f°", r.moonAlt[i], r.sunAlt[i])
+        fun build(withAirmass: Set<Int>, compact: Boolean): List<Pair<String, Int>> {
+            val out = ArrayList<Pair<String, Int>>()
+            out.add(headLine to p.textPrimary)
+            for ((k, rk) in results.withIndex()) {
+                for (line in ChartText.cursorLines(rk.target.name, rk.objAlt[i], rk.airmass[i], rk.objAz[i], rk.moonSep[i],
+                        k in withAirmass, compact)) {
+                    out.add(line to p.seriesColor(k))
+                }
+            }
+            out.add(foot to p.textSecondary)
+            return out
         }
-        lines.add(String.format(Locale.US, "Moon alt %.1f°  ·  Sun alt %.1f°", r.moonAlt[i], r.sunAlt[i]) to p.textSecondary)
-        val w = lines.maxOf { sink.textWidth(it.first, fsz) } + 12f * dp
-        val h = lines.size * fsz * 1.35f + 8f * dp
-        var bx = x + 8f * dp
-        if (bx + w > plotR) bx = x - 8f * dp - w
-        bx = bx.coerceAtLeast(plotL + 2f)
-        val by = plotT + 4f * dp
-        sink.fillRect(bx, by, bx + w, by + h, p.tooltip)
-        sink.strokeRect(bx, by, bx + w, by + h, Colors.alpha(p.textPrimary, 0.3f), 1f)
-        for ((k, s) in lines.withIndex()) {
-            sink.text(s.first, bx + 6f * dp, by + 4f * dp + fsz * (1.0f + 1.35f * k), fsz,
-                if (k == 0 || k == lines.size - 1) s.second else Colors.mix(s.second, p.textPrimary, 0.35f))
+
+        // ---- box geometry for a given content
+        val pad = 6f * dp
+        val availW = width - 4f * dp
+        val availH = plotB - plotT - 8f * dp
+        val labelTexts = dots.mapNotNull { (k, _) -> ChartText.airmassValue(results[k].objAlt[i], results[k].airmass[i]) }
+        val zone = 12f * dp + (labelTexts.maxOfOrNull { sink.textWidth(it, fsz, true) } ?: 0f)
+        class Box(val lines: List<Pair<String, Int>>, val fs: Float, val l: Float, val t: Float, val w: Float, val h: Float) {
+            val rect get() = floatArrayOf(l, t, l + w, t + h)
+        }
+        val gap = 8f * dp
+        val edge = 2f * dp
+        // Left edge of a box of width w: beside the cursor, inside the diagram if possible, else reaching over the
+        // axis labels (null if it fits on neither side).
+        fun besideX(w: Float): Float? = when {
+            x + gap + w <= plotR -> x + gap
+            x - gap - w >= plotL -> x - gap - w
+            x + gap + w <= width - edge -> x + gap
+            x - gap - w >= edge -> x - gap - w
+            else -> null
+        }
+        fun geometry(ls: List<Pair<String, Int>>): Pair<Box, Boolean> {
+            val textW = ls.maxOf { sink.textWidth(it.first, fsz) }
+            // Narrow screens or large system fonts: shrink the text so that the whole box stays on screen ...
+            var scale = minOf(1f, (availW - 2 * pad) / textW, (availH - 8f * dp) / (ls.size * fsz * 1.35f)).coerceAtLeast(0.65f)
+            // ... and a little more if that lets it sit beside the cursor instead of over the points.
+            if (besideX(textW * scale + 2 * pad) == null) {
+                val side = maxOf(x - gap - edge, width - edge - x - gap)
+                val s2 = (side - 2 * pad) / textW
+                if (s2 >= 0.7f) scale = minOf(scale, s2 - 0.001f)
+            }
+            val f = fsz * scale
+            val w = textW * scale + 2 * pad
+            val h = ls.size * f * 1.35f + 8f * dp
+            val near = besideX(w)
+            val bx = near ?: run {
+                val fits = w <= plotR - plotL - 4f
+                val lo = if (fits) plotL + 2f else edge
+                val hi = if (fits) plotR - 2f - w else width - edge - w
+                (x - w / 2).coerceIn(lo, maxOf(lo, hi))
+            }
+            // At the top of the diagram, unless the box reaches over the cursor and would hide the points there:
+            // then where it hides the fewest of them (the active target's point counts double). A box taller than
+            // the diagram ends at its bottom and reaches up over the legend.
+            val by = when {
+                h > plotB - plotT - 8f * dp -> (plotB - 4f * dp - h).coerceAtLeast(edge)
+                bx > x + zone || bx + w < x - zone -> plotT + 4f * dp
+                else -> listOf(plotT + 4f * dp, plotB - 4f * dp - h, (plotT + plotB - h) / 2f).minByOrNull { t ->
+                    dots.sumOf { (k, yo) -> if (yo > t - fsz - 8f * dp && yo < t + h + fsz + 8f * dp) (if (k == active) 2 else 1) else 0 }
+                } ?: (plotT + 4f * dp)
+            }
+            return Box(ls, f, bx, by, w, h) to (near != null)
+        }
+        // One line per target if that fits beside the cursor; otherwise two lines per target, narrower.
+        fun layout(withAirmass: Set<Int>): Box {
+            val wide = build(withAirmass, false)
+            val oneLine = if (wide.maxOf { sink.textWidth(it.first, fsz) } + 2 * pad <= availW) geometry(wide) else null
+            if (oneLine != null && oneLine.second) return oneLine.first
+            val twoLines = geometry(build(withAirmass, true))
+            return if (twoLines.second || oneLine == null) twoLines.first else oneLine.first
+        }
+
+        // ---- labels next to the points (active target first), clear of the box, the other points and each other.
+        // A target whose point cannot be labelled has its airmass in the box; that widens the box, which may then
+        // displace other labels, so this is repeated until it settles (it ends: the box content only ever grows).
+        fun overlaps(a: FloatArray, b: FloatArray) = a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1]
+        val dotR = 4f * dp
+        val fixed = ArrayList<FloatArray>()
+        if (moonShown) fixed.add(floatArrayOf(x - dotR, ym - dotR, x + dotR, ym + dotR))
+        val labels = LinkedHashMap<Int, FloatArray>() // target -> (x, baseline, rect l, t, r, b)
+        val labelText = HashMap<Int, String>()
+        fun place(k: Int, yo: Float, box: FloatArray): Boolean {
+            val v = labelText[k] ?: return false
+            val tw = sink.textWidth(v, fsz, true)
+            // Beside the point, right then left; if those are taken, one or two label heights higher or lower
+            // (the colour still ties the label to its curve).
+            val step = fsz + 5f * dp
+            val candidates = ArrayList<Pair<Float, Float>>()
+            for (shift in listOf(0f, -1f, 1f, -2f, 2f)) {
+                candidates.add(x + 7f * dp to yo + fsz * 0.35f + shift * step)
+                candidates.add(x - 7f * dp - tw to yo + fsz * 0.35f + shift * step)
+            }
+            val others = dots.filter { it.first != k }.map { floatArrayOf(x - dotR, it.second - dotR, x + dotR, it.second + dotR) } +
+                labels.filterKeys { it != k }.values.map { floatArrayOf(it[2], it[3], it[4], it[5]) } + fixed + listOf(box)
+            for ((lx, base) in candidates) {
+                val rect = floatArrayOf(lx - 3f * dp, base - fsz - 1f * dp, lx + tw + 3f * dp, base + 3f * dp)
+                if (rect[0] < plotL || rect[2] > plotR || rect[1] < plotT || rect[3] > plotB) continue
+                if (others.any { overlaps(it, rect) }) continue
+                labels[k] = floatArrayOf(lx, base, rect[0], rect[1], rect[2], rect[3])
+                return true
+            }
+            labels.remove(k)
+            return false
+        }
+        for ((k, _) in dots) ChartText.airmassValue(results[k].objAlt[i], results[k].airmass[i])?.let { labelText[k] = it }
+        val ordered = dots.sortedBy { if (it.first == active) -1 else it.first }
+        fun unlabelled() = results.indices.filter { k ->
+            ChartText.airmassValue(results[k].objAlt[i], results[k].airmass[i]) != null && k !in labels
+        }.toSet()
+        var content = results.indices.filter { k ->
+            ChartText.airmassValue(results[k].objAlt[i], results[k].airmass[i]) != null && k !in labelText
+        }.toSet()
+        var box = layout(content)
+        for ((k, yo) in ordered) place(k, yo, box.rect)
+        var rounds = 0
+        while (rounds++ <= results.size) {
+            val need = unlabelled()
+            if (need == content) break
+            content = need
+            box = layout(content)
+            for ((k, yo) in ordered) {
+                val g = labels[k] ?: continue
+                if (overlaps(box.rect, floatArrayOf(g[2], g[3], g[4], g[5]))) place(k, yo, box.rect)
+            }
+        }
+
+        for ((k, g) in labels) {
+            sink.fillRect(g[2], g[3], g[4], g[5], p.tooltip)
+            sink.text(labelText[k]!!, g[0], g[1], fsz, p.seriesColor(k), TextAlign.LEFT, true)
+        }
+        sink.fillRect(box.l, box.t, box.l + box.w, box.t + box.h, p.tooltip)
+        sink.strokeRect(box.l, box.t, box.l + box.w, box.t + box.h, Colors.alpha(p.textPrimary, 0.3f), 1f)
+        for ((k, s) in box.lines.withIndex()) {
+            sink.text(s.first, box.l + pad, box.t + 4f * dp + box.fs * (1.0f + 1.35f * k), box.fs,
+                if (k == 0 || k == box.lines.size - 1) s.second else Colors.mix(s.second, p.textPrimary, 0.35f))
         }
     }
 

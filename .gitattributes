@@ -1,2 +1,11 @@
-# Auto detect text files and perform LF normalization
+# Line endings: text files are stored with LF in the repository.
 * text=auto
+# Unix scripts must keep LF, Windows scripts CRLF.
+/gradlew        text eol=lf
+*.command       text eol=lf
+*.sh            text eol=lf
+*.bat           text eol=crlf
+# Binary files are never converted.
+*.jar           binary
+*.png           binary
+*.apk           binary

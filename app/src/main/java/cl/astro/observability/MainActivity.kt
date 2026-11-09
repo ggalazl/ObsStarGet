@@ -691,8 +691,9 @@ class MainActivity : Activity() {
             onExpand = { openFull(FullKind.NIGHT) }
         }
         ncard.addView(nightView)
-        ncard.addView(text("Touch and drag on the diagram to read times, altitude, airmass, azimuth and Moon distance; " +
-            "the sky tracks below follow the cursor. Double-tap a diagram (or ⤢) to see it full screen.", 12f, pal.textMuted))
+        ncard.addView(text("Touch and drag on the diagram: each target's airmass is written next to its point on the curve, " +
+            "and the box gives the time, altitude, azimuth and Moon distance. The sky tracks below follow the cursor. " +
+            "Double-tap a diagram (or ⤢) to see it full screen.", 12f, pal.textMuted))
         ncard.addView(sectionTitle("Visibility table (sorted by time of minimum airmass)").apply { setPadding(0, dp(12), 0, dp(4)) })
         table = TableLayout(this)
         ncard.addView(HorizontalScrollView(this).apply { addView(table) })
@@ -1724,7 +1725,7 @@ class MainActivity : Activity() {
             The start is the evening of a date; the window covers 1–366 nights. "Tonight" picks the current night (before 06:00 that is still the previous evening's night). Once the diagrams are shown, changing the dates or any option recomputes them.
 
             Reading the results
-            • Night diagram: one curve per target, thicker where it is observable; the dotted curve is the Moon, with its phase; the background shows day, twilight and night; LST runs along the top. Touch and drag to read the values. ◀ ▶ change the night.
+            • Night diagram: one curve per target, thicker where it is observable; the dotted curve is the Moon, with its phase; the background shows day, twilight and night; LST runs along the top. Touch and drag to read the values: each target's airmass next to its point on the curve, and the time, altitude, azimuth and Moon distance in the box. ◀ ▶ change the night.
             • Visibility table: the targets in order of their best moment; tap a row to make that target active.
             • Sky tracks: the paths on the sky, zenith at the centre, north up, east left.
             • Best time of year: observable hours per night over the next year (darker part = Moon down, lighter part = Moon up), with the best observability window shaded, the opposition and the best single night. "Go to a night…" shows any night you choose.

@@ -45,7 +45,7 @@ The design follows iObserve: several targets are compared on one night, with the
   * Each target has a fixed colour, chosen from a colour-blind-safe order.
   * The *observable* stretch is drawn thicker: dark **and** airmass ≤ the limit.
   * LST runs along the top axis and altitude on the right axis.
-  * Touching the diagram shows the time (in the chosen time scale), UT, LST, and each target's altitude, airmass, azimuth and Moon distance.
+  * Touching the diagram writes each target's airmass next to its point on the curve, and shows in a box the time (in the chosen time scale), UT, LST, and each target's altitude, azimuth and Moon distance. A point that cannot carry its label (below the bottom of the airmass axis, or too close to another point) has its airmass in the box instead, so every value appears once.
   * ◀ ▶ step through the nights of the date window; at either end they move the window by one night.
 * **Visibility table:** one row per target, sorted by the time of minimum airmass in dark time. Columns: best time, minimum airmass and altitude, observable hours (all, and with the Moon down), the first-to-last observable times, and the minimum Moon separation.
 * **Sky tracks:** the targets' paths and the Moon's path on a polar alt–az chart. The zenith is at the centre, north up and east left. Dots mark each hour, the airmass-limit circle is shown, and the chart follows the night-diagram cursor.
@@ -112,7 +112,7 @@ Conventions:
 
 ## Validation
 
-`app/src/test` holds 42 JUnit tests. The astronomy is checked against two sources: the worked examples in Meeus, *Astronomical Algorithms* (2nd ed.), and 433 reference values from astropy 8.0 / ERFA produced by `validation/make_reference.py`. Measured agreement:
+`app/src/test` holds 45 JUnit tests. The astronomy is checked against two sources: the worked examples in Meeus, *Astronomical Algorithms* (2nd ed.), and 433 reference values from astropy 8.0 / ERFA produced by `validation/make_reference.py`. Measured agreement:
 
 | Quantity | Worst difference |
 |---|---|
@@ -133,6 +133,7 @@ The tests also check internal consistency:
 * With a fixed UTC offset (e.g. UTC−2) the diagrams keep the same physics and only shift their clock; labels read "UTC−2".
 * Polar day and night and never-rising targets are handled.
 * The year scan (10-minute steps) agrees with the detailed night computation to 0.001 h, and its lowest airmass with a 30-second brute-force search to 0.007. Its opposition night has the transit within 4 minutes of local midnight, and a season in progress today comes round again on the same dates a year later.
+* The cursor read-out shows every target's airmass exactly once (next to its point, or in the box when the point is off the axis or crowded), with the value of the plotted curve, and keeps all its text on screen; this is checked for 3 and 8 targets (including two almost overlapping), both y axes, phone, narrow-phone-with-large-font and landscape sizes.
 * The NED and Sesame parsers are tested on replies in the documented formats (known object, ambiguous name, unknown name, not a name, errors), as are the choice between the two services and the cache.
 
 `validation/preview/PreviewMain.kt` draws all the diagrams to PNG, in the page sizes and in full-screen portrait and landscape, on a desktop JVM through a Java2D `DrawSink`, using the same layout code as the app. The images in `docs/` were made this way.
